@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3><strong>Users</strong></h3>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<table class="table table-hover mt-3">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Staff</th>
+            <th>Status</th>
+            {% if user.is_superuser %}
+            <th>Actions</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in users %}
+        <tr>
+            <td>{{ u.username }}</td>
+            <td>
+                {% if u.is_staff %}
+                    <span class="badge bg-success">Staff</span>
+                {% else %}
+                    <span class="badge bg-secondary">No</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if u.is_active %}
+                    <span class="badge bg-success">Active</span>
+                {% else %}
+                    <span class="badge bg-danger">Inactive</span>
+                {% endif %}
+            </td>
+
+            {% if user.is_superuser %}
+            <td>
+                {% if u != user %}
+                <a href="{% url 'toggle_user' u.id %}"
+                   class="btn btn-sm btn-warning">
+                    {% if u.is_active %}Deactivate{% else %}Activate{% endif %}
+                </a>
+
+                <a href="{% url 'delete_user' u.id %}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('Delete this user?')">
+                    Delete
+                </a>
+                {% else %}
+                <span class="text-muted">You</span>
+                {% endif %}
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

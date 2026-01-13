@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Admin Dashboard{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    {% block extra_css %}{% endblock %}
+
+    <style>
+       body {
+    font-family: 'Roboto, Arial, sans-serif';
+    margin: 0;
+    background: var(--light);
+    color: var(--dark);
+} 
+
+.nav-link.active {
+    background: #ffc107;   /* yellow */
+    color: black !important;
+    border-radius: 5px;
+    font-weight: bold;
+}
+    </style>
+    
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-primary px-3">
+    <span class="navbar-brand">Admin Dashboard</span>
+<a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">Logout</a>
+</nav>
+
+<div class="container-fluid" style="min-height: 100vh;">
+    <div class="row">
+        <!-- Sidebar -->
+        <!-- <aside style="background-color: darkslategrey;" class="col-md-2 vh-100 p-4"> -->
+        <aside class="col-md-2 vh-100 p-4 bg-secondary">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <!-- <a class="nav-link" href="#">Dashboard</a> -->
+                <h5><a class="nav-link text-warning {% if request.path == '/' %}active{% endif %}" href="{% url 'dashboard_home' %}">Dashboard</a></h5>
+
+                </li>
+                <li class="nav-item">
+                     <h5><a class="nav-link text-warning
+                           {% if request.path == '/messages/' %}active{% endif %}" href="{% url 'message_list' %}">Messages</a></h5>
+                </li>
+
+
+
+
+                <li class="nav-item">
+                    <h5><a class="nav-link text-warning {% if request.path == '/services/' %}active{% endif %}" href="{% url 'service_list' %}">Services</a></h5>
+
+                </li>
+
+                <li class="nav-item">
+                <h5><a class="nav-link text-warning {% if request.path == '/accounts/users/' %}active{% endif %}" href="{% url 'user_list' %}">Users</a></h5>
+                </li>
+
+
+                {% if user.is_superuser %}
+                <li class="nav-item">
+                   <h5><a class="nav-link text-warning {% if request.path == '/accounts/register/' %}active{% endif %}" href="{% url 'register' %}">Register User</a></h5>
+                </li>
+                {% endif %}
+             <!-- <p style="color:red;">PATH = {{ request.path }}</p>===THIS IS TO CONFIRM PATH--- -->
+            
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="col-md-10 p-4">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

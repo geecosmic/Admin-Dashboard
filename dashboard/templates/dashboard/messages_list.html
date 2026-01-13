@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="pb-3"><strong>Messages</strong></h3>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-md-4">
+    <input type="text" name="q" value="{{ request.GET.q }}"
+           class="form-control" placeholder="Search name, email, subject...">
+  </div>
+
+  <div class="col-md-3">
+    <select name="status" class="form-select">
+      <option value="">All</option>
+      <option value="unread" {% if request.GET.status == 'unread' %}selected{% endif %}>Unread</option>
+      <option value="read" {% if request.GET.status == 'read' %}selected{% endif %}>Read</option>
+    </select>
+  </div>
+
+  <div class="col-md-2">
+    <button class="btn btn-primary w-100">Filter</button>
+  </div>
+</form> <hr>
+
+<!-- ============================================================================================= -->
+
+<table class="table table-hover mt-3">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for msg in messages %}
+        <!-- <tr class="{% if not msg.is_read %}table-warning{% endif %}"> -->
+        <tr class="{% if not msg.is_read %}table-warning{% else %}table-success{% endif %}">
+
+            <td>{{ msg.name }}</td>
+            <td>{{ msg.email }}</td>
+            <td>{{ msg.subject }}</td>
+            <td>
+                {% if msg.is_read %}
+                    <span class="badge bg-success">Read</span>
+                {% else %}
+                    <span class="badge bg-danger">Unread</span>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'message_detail' msg.pk %}" class="btn btn-sm btn-primary">View</a>
+
+                {% if not msg.is_read %}
+                <a href="{% url 'mark_message_read' msg.pk %}"
+                   class="btn btn-sm btn-success">
+                    Mark as Read
+                </a>
+                {% endif %}
+
+                <a href="{% url 'message_delete' msg.pk %}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('Delete this message?')">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">No messages yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

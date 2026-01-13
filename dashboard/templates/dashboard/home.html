@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2><strong>Dashboard Overview</strong></h2>
+
+
+
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card text-bg-primary mb-3">
+            <div class="card-body">
+                <h6>Total Messages</h6>
+                <p class="fs-2">{{ total_messages }}</p>
+                <small>{{ unread_messages }} unread</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-bg-success mb-3">
+            <div class="card-body">
+                <h6>Services</h6>
+                <p class="fs-2">{{ total_services }}</p>
+                <small>{{ active_services }} active</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-bg-dark mb-3">
+            <div class="card-body">
+                <h6>Users</h6>
+                <p class="fs-2">{{ total_users }}</p>
+                <small>Registered accounts</small>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Message Detail</h3>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h5>{{ message.subject }}</h5>
+        <p><strong>From:</strong> {{ message.name }} ({{ message.email }})</p>
+        <hr>
+        <p>{{ message.message }}</p>
+
+        <a href="{% url 'message_list' %}" class="btn btn-secondary">Back</a>
+    </div>
+</div>
+{% endblock %}

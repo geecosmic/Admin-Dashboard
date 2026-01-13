@@ -1,0 +1,42 @@
+{% extends 'public/base_public.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+<section id="services" class="mb-5">
+  <h2 class="text-center mb-4"><strong>Our Services</strong></h2>
+
+  <div class="row g-4">
+    {% for s in services %}
+      <div class="col-md-4">
+        <div class="card service-card h-100 shadow-sm border-0">
+          
+          {% if s.image %}
+            <img src="{{ s.image.url }}" class="card-img-top"  style="height:200px; object-fit:cover; border-top-left-radius: .25rem; border-top-right-radius: .25rem;">
+          {% else %}
+            <img src="{% static 'images/aux-img.jpg' %}" class="card-img-top" alt="{{ s.title }}" style="height:200px; object-fit:cover; border-top-left-radius: .25rem; border-top-right-radius: .25rem;">
+          {% endif %}
+
+          <div class="card-body text-center">
+            <h5 class="card-title fw-semibold">{{ s.title }}</h5>
+            <p class="card-text text-muted">{{ s.description }}</p>
+          </div>
+        </div> 
+      </div>
+    {% empty %}
+      <p class="text-center">No services available yet.</p>
+    {% endfor %}
+  </div>
+</section>
+<hr><hr>
+
+
+
+
+
+{% endblock %}
+
+
+

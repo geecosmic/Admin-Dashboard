@@ -1,0 +1,112 @@
+{% extends 'public/base_public.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<section class="hero mb-5" 
+         style="
+            background-image: url('/static/images/slide1.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white; 
+            height: 80vh;
+         ">
+  <div class="text-center">
+    <h1>Modern IT & Software Solutions</h1>
+    <p class="lead">Building secure, scalable digital products for businesses.</p>
+    <!-- <a href="#services" class="btn btn-primary btn-lg mt-3">Explore Services</a> -->
+    <a href="{% url 'public_services' %}" class="btn btn-primary btn-lg mt-3">Explore Services</a>
+  </div>
+</section>
+
+
+
+
+<!-- Carousel -->
+<div id="landingCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static './images/hero.jpg' %}" class="d-block w-100" alt="Tech">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/slide2.jpg' %}" class="d-block w-100" alt="Programming">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/slide3.jpg' %}" class="d-block w-100" alt="Software">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#landingCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#landingCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- Services Preview -->
+
+
+
+<!-- 
+<section id="services" class="services-section py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-2">Our Services</h2>
+    <p class="text-center text-muted mb-5">
+      We deliver smart digital solutions that grow your business.
+    </p>
+  
+    <div class="row g-4">
+      {% for s in services %}
+      <div class="col-md-4">
+        <div class="card service-card h-100">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold">{{ s.title }}</h5>
+            <p class="card-text text-muted">{{ s.description }}</p>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-center">No services available yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>  -->
+
+
+
+<!-- 
+<section id="services" class="mb-5">
+  <h2 class="text-center mb-4">Our Services</h2>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 service-card">
+        <h5 class="card-title">Web Development</h5>
+        <p class="card-text">Custom websites and web applications using Django, React, and modern technologies.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 service-card">
+        <h5 class="card-title">Mobile Apps</h5>
+        <p class="card-text">Android and cross-platform apps tailored to your business needs.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 service-card">
+        <h5 class="card-title">IT Support</h5>
+        <p class="card-text">Reliable technical support, maintenance, and system optimization.</p>
+      </div>
+    </div>
+  </div>
+</section>  -->
+
+<!-- Call to Action -->
+<section class="text-center mb-5">
+  <h3>Let’s Build Something Great Together</h3>
+  <a href="{% url 'contact' %}" class="btn btn-lg btn-primary mt-3">Contact Us</a>
+</section>
+
+{% endblock %}
