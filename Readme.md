@@ -66,8 +66,8 @@ project/
 ### 1. Clone the project
 
 ```bash
-git clone <your-repo-url>
-cd project
+git clone https://github.com/geecosmic/Admin-Dashboard.git
+cd admin-dashboard
 ```
 
 ### 2. Create virtual environment

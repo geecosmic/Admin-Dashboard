@@ -101,9 +101,6 @@ def delete_user(request, user_id):
 
 
 
-
-
-
 def logout_view(request):
     logout(request)
     return redirect('login')
