@@ -4,6 +4,10 @@ A Django-based web application with a public business website and a custom admin
 
 ---
 
+================================================================================
+** To test the project,Request demo credentials (Username and Password) by email.
+================================================================================
+
 ## 🚀 Features
 
 ### Public Website
